@@ -63,18 +63,30 @@ The robot dynamic can be seen [here ![](https://i.imgur.com/RmvkGxz.png)
 ## Target approaching with and without disturbance  
 ![](https://i.imgur.com/HTwMHJG.png)  
 
+
 ## Target approaching with and without disturbance  
 ![](https://i.imgur.com/57DCgZz.png)  
-  
 
 ## Following figure of 8  
-The robot can approach the point with 0.07m tollerance. Better than previous!  
+The robot can approach the point with 0.7m tollerance. Better than previous!  
 ![](https://i.imgur.com/hURelX7.png)  
 ![](https://i.imgur.com/ZmsdX6e.png)  
 
 ## Following figure of 8 under disturbance  
-Can still reach every point with 0.07m tollerance!  
+Can still reach every point with 0.7m tollerance!  
 ![](https://i.imgur.com/JEDDjTc.png)  
+
+# Result when incorporating previous states (checkout fuzzification_2 branch)
+## Fuzzy membership function  
+![](https://i.imgur.com/xoGAO7w.png)  
+![](https://i.imgur.com/p2v7jRA.png)  
+
+## Experiments  
+![](https://i.imgur.com/eRkA6WS.png)  
+![](https://i.imgur.com/OyI9CCo.png)  
+![](https://i.imgur.com/1s6wRK2.png)  
+![](https://i.imgur.com/WVXuAgC.png)  
+
 
 ---
 
@@ -82,3 +94,12 @@ Can still reach every point with 0.07m tollerance!
 1. For testing, open `testing.m` and run.  
 2. For training, open `training.m` and run.  
 3. To follow path, use `path_generator.m` to follow point array.  
+
+# References
+
+[1]  
+[2]  
+[3]  
+[4]  
+
+###### tags: `fuzzy logic` `matlab` `vrep` `robot`
