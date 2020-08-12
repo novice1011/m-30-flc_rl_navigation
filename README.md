@@ -1,14 +1,3 @@
----
-slideOptions:
-  transition: slide
----
-<style>
-.reveal {
-  font-size: 24px;
-}
-</style>
-
-
 # Fuzzy Reinforcement learning for navigation README  
 
 "Differential drive mobile robot to approach point using reinforcement learning"  
@@ -79,8 +68,6 @@ The robot dynamic can be seen [here ![](https://i.imgur.com/RmvkGxz.png)
 ![](https://i.imgur.com/57DCgZz.png)  
 
 
-  
-
 ## Following figure of 8  
 The robot can approach the point with 0.7m tollerance. Better than previous!  
 ![](https://i.imgur.com/hURelX7.png)  
@@ -90,7 +77,7 @@ The robot can approach the point with 0.7m tollerance. Better than previous!
 Can still reach every point with 0.7m tollerance!  
 ![](https://i.imgur.com/JEDDjTc.png)  
 
-# Result when incorporating previous states  
+# Result when incorporating previous states (check out fuzzification_2 branch)
 ## Fuzzy membership function  
 ![](https://i.imgur.com/xoGAO7w.png)  
 ![](https://i.imgur.com/p2v7jRA.png)  
