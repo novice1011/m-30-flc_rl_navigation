@@ -40,9 +40,9 @@ vol_gain = 10; % to slowdown the robot
 % 1. Action and observation signals that the agent uses to interact with the environment. For more information, see rlNumericSpec and rlFiniteSetSpec.
 % 2. Reward signal that the agent uses to measure its success. For more information, see Define Reward Signals.
 % Define the observation specification obsInfo and action specification actInfo.
-obsInfo = rlNumericSpec([10 1],... %integral error, error, height
-    'LowerLimit',zeros(1,10)',...
-    'UpperLimit',ones(1,10)');
+obsInfo = rlNumericSpec([18 1],... %integral error, error, height
+    'LowerLimit',zeros(1,18)',...
+    'UpperLimit',ones(1,18)');
 obsInfo.Name = 'observations';
 obsInfo.Description = 'distance error and heading error fuzzified 22 classes each';
 numObservations = obsInfo.Dimension(1);
@@ -61,7 +61,7 @@ env.ResetFcn = @(in)localResetFcn(in);
 
 %% Specify the simulation time Tf and the agent sample time Ts in seconds.
 Ts = 0.05;
-Tf = 20;
+Tf = 10;
 
 %% Fix the random generator seed for reproducibility.
 % rng(0)
@@ -147,7 +147,7 @@ actor = rlRepresentation (actorNetwork,obsInfo,actInfo,'Observation',{'State'},'
 agentOpts = rlDDPGAgentOptions(...
     'SampleTime',Ts,...
     'TargetSmoothFactor',1e-3,...
-    'DiscountFactor',0.9, ...
+    'DiscountFactor',0.99, ...
     'MiniBatchSize',64, ...
     'ExperienceBufferLength',1e6); 
 agentOpts.NoiseOptions.Variance = 0.3;
@@ -163,7 +163,7 @@ agent = rlDDPGAgent(actor,critic,agentOpts);
 % 3. Stop training when the agent receives an average cumulative reward greater than 800 over 20 consecutive episodes. At this point, the agent can control the level of water in the tank.
 % For more information, see rlTrainingOptions.
 
-maxepisodes = 50000;
+maxepisodes = 1000;
 maxsteps = ceil(Tf/Ts);
 trainOpts = rlTrainingOptions(...
     'MaxEpisodes',maxepisodes, ...
@@ -172,7 +172,7 @@ trainOpts = rlTrainingOptions(...
     'Verbose',false, ...
     'Plots','training-progress',...
     'StopTrainingCriteria','AverageReward',...
-    'StopTrainingValue',1000000);
+    'StopTrainingValue',10000);
 
 trainingStats = train(agent,env,trainOpts);
 
@@ -181,6 +181,8 @@ trainingStats = train(agent,env,trainOpts);
 
 simOpts = rlSimulationOptions('MaxSteps',maxsteps,'StopOnError','on');
 experiences = sim(env,agent,simOpts);
+
+save('workspace.mat')
 
 %% Local Function
 function in = localResetFcn(in)

@@ -25,7 +25,7 @@ ksep = 1;           %S scaler
 ksep_dot = 100;     %S dot scaler
 
 %% Input
-tau_b = 2; %disturbance amplitude
+tau_b = 0; %disturbance amplitude
 f = 10;
 
 G_x = 10; %When not using path generator
@@ -37,8 +37,8 @@ theta_init=deg2rad(0);
 
 vol_gain = 10; % to slowdown the robot
 
-Ts = 0.1;
-Tf = 30;
+Ts = 0.05;
+Tf = 5;
 
 %% Create Environment Interface
 % Creating an environment model includes defining the following:
