@@ -25,7 +25,7 @@ ksep = 1;           %S scaler
 ksep_dot = 100;     %S dot scaler
 
 %% Input
-tau_b = 2; %disturbance amplitude
+tau_b = 0; %disturbance amplitude
 f = 10;
 
 G_x = 10; %When not using path generator
@@ -37,8 +37,12 @@ theta_init=deg2rad(0);
 
 vol_gain = 10; % to slowdown the robot
 
-Ts = 0.1;
-Tf = 30;
+Ts = 0.05;
+Tf = 5;
+
+% mode = 1; approaching point
+% mode = 2; following point array
+mode = 2; 
 
 %% Create Environment Interface
 % Creating an environment model includes defining the following:
@@ -56,10 +60,6 @@ numActions = a.numActions;
 
 %% Build the environment interface object.
 env = a.env;
-
-
-%% Set a custom reset function that randomizes the reference values for the model.
-% env.ResetFcn = @(in)localResetFcn(in, G_x, G_y);
 
 %% Fix the random generator seed for reproducibility.
 % rng(0)
@@ -115,7 +115,9 @@ agent = a.agent;
 
 %% Validate Trained Agent
 % Validate the learned agent against the model by simulation.
-path_generator
+path_generator;
+set_param('model/G_x','Value',num2str(G_x))
+set_param('model/G_y','Value',num2str(G_y))
 simout = sim('model');
 
 %% ----------Plot x vs y---------------
@@ -155,14 +157,3 @@ set(gca,'FontSize',12); %
 set(gca,'FontName','serif');
 set(gca,'FontWeight','bold');
 set(gca,'LineWidth',2);
-
-%% Local Function
-function in = localResetFcn(in, G_x, G_y)
-    % randomize G_x
-    blk = sprintf('model/G_x');
-    in = setBlockParameter(in,blk,'Value',num2str(G_x));
-    
-    % randomize G_y
-    blk = sprintf('model/G_y');
-    in = setBlockParameter(in,blk,'Value',num2str(G_y));
-end

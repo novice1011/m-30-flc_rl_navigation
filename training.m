@@ -35,6 +35,8 @@ theta_init=deg2rad(0);
 
 vol_gain = 10; % to slowdown the robot
 
+robot_path=[0;0];
+mode = 1;
 %% Create Environment Interface
 % Creating an environment model includes defining the following:
 % 1. Action and observation signals that the agent uses to interact with the environment. For more information, see rlNumericSpec and rlFiniteSetSpec.
@@ -182,6 +184,7 @@ trainingStats = train(agent,env,trainOpts);
 simOpts = rlSimulationOptions('MaxSteps',maxsteps,'StopOnError','on');
 experiences = sim(env,agent,simOpts);
 
+save('workspace.mat')
 %% Local Function
 function in = localResetFcn(in)
     % randomize G_x

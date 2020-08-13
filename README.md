@@ -9,6 +9,15 @@ by:
 
 ---
 
+# Tutorial  
+1. For testing, open `testing.m`.  
+    1. change `mode=1` to approach point.  
+    2. change `mode=2` to follow point array.  
+3. For training, open `training.m`.  
+4. To follow path, use `path_generator.m` to generate point array.  
+
+---
+
 # System description  
 
 This project is developed from our previous project. [It can b ssen here.](https://hackmd.io/@libernormous/ddmr_rl_matlab)   
@@ -67,6 +76,7 @@ The robot dynamic can be seen [here ![](https://i.imgur.com/RmvkGxz.png)
 ## Target approaching with and without disturbance  
 ![](https://i.imgur.com/57DCgZz.png)  
 
+
 ## Following figure of 8  
 The robot can approach the point with 0.7m tollerance. Better than previous!  
 ![](https://i.imgur.com/hURelX7.png)  
@@ -76,7 +86,9 @@ The robot can approach the point with 0.7m tollerance. Better than previous!
 Can still reach every point with 0.7m tollerance!  
 ![](https://i.imgur.com/JEDDjTc.png)  
 
-# Result when incorporating previous states (checkout fuzzification_2 branch)
+---
+
+# Result when incorporating previous states  
 ## Fuzzy membership function  
 ![](https://i.imgur.com/xoGAO7w.png)  
 ![](https://i.imgur.com/p2v7jRA.png)  
@@ -87,13 +99,7 @@ Can still reach every point with 0.7m tollerance!
 ![](https://i.imgur.com/1s6wRK2.png)  
 ![](https://i.imgur.com/WVXuAgC.png)  
 
-
 ---
-
-# Tutorial  
-1. For testing, open `testing.m` and run.  
-2. For training, open `training.m` and run.  
-3. To follow path, use `path_generator.m` to follow point array.  
 
 # References
 
@@ -102,4 +108,4 @@ Can still reach every point with 0.7m tollerance!
 [3]  
 [4]  
 
-###### tags: `fuzzy logic` `matlab` `vrep` `robot`
+###### tags: `fuzzy logic` `matlab` `vrep` `robot` `reinforcement learning`
