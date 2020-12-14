@@ -31,7 +31,7 @@ f = 10;
 G_x = 10; %When not using path generator
 G_y = 0;  %When not using path generator
 
-xa_init=0;
+xa_init=1;
 ya_init=0;
 theta_init=deg2rad(0);
 
@@ -131,8 +131,8 @@ simout = sim('model');
 %% ----------Plot x vs y---------------
 figure(4);
 plot(simout.xa, simout.ya, simout.G_xt, simout.G_yt, goal_path, xa_init, ya_init, 'g*', 'LineWidth', 2, 'MarkerSize', 4), xlabel('x(m)'), ylabel('y(m)'), axis equal, grid on, hold on;
-title(['robot path']);
-legend({'robot path', goal_term, 'start position'},'Location','northeast')
+title(['DDAGV path']);
+legend({'DDAGV path', goal_term, 'start position'},'Location','best')
 set(gca,'FontSize',12);
 set(gca,'FontName','serif');
 set(gca,'FontWeight','bold');
