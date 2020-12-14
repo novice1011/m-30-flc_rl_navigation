@@ -38,11 +38,19 @@ theta_init=deg2rad(0);
 vol_gain = 10; % to slowdown the robot
 
 Ts = 0.05;
-Tf = 5;
+Tf = 25;
 
 % mode = 1; approaching point
 % mode = 2; following point array
 mode = 2; 
+
+goal_path = '*';
+goal_term = 'goal position';
+if mode == 2
+    goal_path = '--';
+    goal_term = 'desired path';
+end
+    
 
 %% Create Environment Interface
 % Creating an environment model includes defining the following:
@@ -122,9 +130,9 @@ simout = sim('model');
 
 %% ----------Plot x vs y---------------
 figure(4);
-plot(simout.xa, simout.ya, simout.G_xt, simout.G_yt, '*', xa_init, ya_init, 'g*', 'LineWidth', 2, 'MarkerSize', 4), xlabel('x(m)'), ylabel('y(m)'), axis equal, grid on, hold on;
+plot(simout.xa, simout.ya, simout.G_xt, simout.G_yt, goal_path, xa_init, ya_init, 'g*', 'LineWidth', 2, 'MarkerSize', 4), xlabel('x(m)'), ylabel('y(m)'), axis equal, grid on, hold on;
 title(['robot path']);
-legend({'robot path', 'goal position', 'start position'},'Location','northeast')
+legend({'robot path', goal_term, 'start position'},'Location','northeast')
 set(gca,'FontSize',12);
 set(gca,'FontName','serif');
 set(gca,'FontWeight','bold');
